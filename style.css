@@ -4,16 +4,18 @@
 
 .checkbox-text{
     position: absolute;
-    right: 80px;
+    right: 110px;
     top: 48px;
     height: 30px;
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .checkbox{
     position: absolute;
     width: 62px;
     height: 30px;
-    right: 38px;
+    right: 56px;
     top: 56px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -37,7 +39,7 @@
 .input{
     position: absolute;
     height: 30px;
-    right: 210px;
+    right: 310px;
     left: 120px;
     top: 56px;
     background: #FFFFFF;
@@ -50,11 +52,13 @@
    position: absolute;
     width: 62px;
     height: 30px;
-    right: 136px;
+    right: 206px;
     top: 56px;
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px; 
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 .qlist{

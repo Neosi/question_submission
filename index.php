@@ -14,12 +14,10 @@ $LAUNCH = LTIX::requireData();
 <p><?php $OUTPUT->welcomeUserCourse(); ?></p>
 <div class="body">
     <div class='input-outer'>
-        <input class='input'> </input>
-        <input type='checkbox' class='checkbox'></input>
-        <p class='checkbox-text'>ANON</p>
-        <button type='button' class='button'>Ask!</button>
-    </div>
+    </div> <input class='input'> </input>
+    <input type='checkbox' class='checkbox'></input>
+    <p class='checkbox-text'>Anonymous</p>
+    <button type='button' class='button'>Ask!</button>
     <div class='qlist'>
-
     </div>
 </div>
