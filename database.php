@@ -12,36 +12,55 @@ $DATABASE_INSTALL = array(
 array( "{$CFG->dbprefix}qs_module",
 "create table {$CFG->dbprefix}qs_module (
     id INTEGER NOT NULL AUTO_INCREMENT,
-    course_id INTEGER
+    course_id INTEGER NOT NULL,
+    CONSTRAINT `{$CFG->dbprefix}qs_module_fk_1`
+        FOREIGN KEY (`course_id`)
+        REFERENCES `{$CFG->dbprefix}lti_link` (`link_id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id)
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
 
 array( "{$CFG->dbprefix}qs_question",
 "create table {$CFG->dbprefix}qs_question (
     id INTEGER NOT NULL AUTO_INCREMENT,
-    module_id INTEGER,
-    question_text TEXT,
-    time_created DATETIME,
+    module_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    question_text TEXT NOT NULL,
+    date_created DATE NOT NULL,
     status INTEGER,
-    anonymous INTEGER,
-    user_id INTEGER,
+    anonymous BIT,
+    CONSTRAINT `{$CFG->dbprefix}qs_question_fk_1`
+        FOREIGN KEY (`user_id`)
+        REFERENCES `{$CFG->dbprefix}lti_user` (`user_id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id)
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
 
 array( "{$CFG->dbprefix}qs_vote",
-"create table {$CFG->dbprefix}lms_tools_status (
+"create table {$CFG->dbprefix}qs_vote (
     id INTEGER NOT NULL AUTO_INCREMENT,
     user_id INTEGER,
     question_id INTEGER,
+    CONSTRAINT `{$CFG->dbprefix}qs_vote_fk_1`
+        FOREIGN KEY (`user_id`)
+        REFERENCES `{$CFG->dbprefix}lti_user` (`user_id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `{$CFG->dbprefix}qs_vote_fk_2`
+        FOREIGN KEY (`question_id`)
+        REFERENCES `{$CFG->dbprefix}qs_question` (`id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
 
 array( "{$CFG->dbprefix}qs_user",
-"create table {$CFG->dbprefix}lms_tools_status (
+"create table {$CFG->dbprefix}qs_user (
     id INTEGER NOT NULL AUTO_INCREMENT,
-    approved DEFAULT 1,
+    user_id INTEGER NOT NULL,
+    approved BIT DEFAULT 1,
+    CONSTRAINT `{$CFG->dbprefix}qs_user_fk_1`
+        FOREIGN KEY (`user_id`)
+        REFERENCES `{$CFG->dbprefix}lti_user` (`user_id`)
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8")
 );
-
-$DATABASE_UPGRADE = function($oldversion) {
-    global $CFG, $PDOX;
-    return 201804301336;
-
-};
