@@ -18,7 +18,7 @@ if (isset($_POST["question"])) {
     $question = $_POST["question"];
     $sql =
         "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
-    VALUES (NULL, '0', '$USER->id', '$question', CURDATE())";
+    VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06')";
     $result = $PDOX->queryDie($sql);
 }
 ?>
