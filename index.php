@@ -18,7 +18,7 @@ if (isset($_POST["question"])){
     $question = $_POST["question"];
     $sql = 
     "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
-    VALUES (NULL, '0', '$USER->id', '$question', '2020-03-04')";
+    VALUES (NULL, '0', '$USER->id', '$question', CURDATE())";
     $result = $PDOX->queryDie($sql);
 }
 ?>
@@ -36,7 +36,7 @@ if (isset($_POST["question"])){
         <button type='submit' class='button'>Ask</button>
     </form>
     <div class='qlist'>
-    <table class="table" style="width:100%">
+    <table class="q-table" style="width:100%">
   <tr>
     <th>ID</th>
     <th>User</th>
