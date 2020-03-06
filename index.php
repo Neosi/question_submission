@@ -18,7 +18,7 @@ if (isset($_POST["question"])){
     $question = $_POST["question"];
     $sql = 
     "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
-    VALUES (NULL, '0', '3', '$question', '2020-03-04')";
+    VALUES (NULL, '0', '$USER->id', '$question', '2020-03-04')";
     $result = $PDOX->queryDie($sql);
 }
 ?>
@@ -41,6 +41,7 @@ if (isset($_POST["question"])){
     <th>ID</th>
     <th>User</th>
     <th>Question</th>
+    <th>Date</th>
   </tr>
   
         <?php
@@ -50,6 +51,7 @@ if (isset($_POST["question"])){
             foreach ($rows as $row) {
                 $id = $row['id']; 
                 $question = $row['question_text']; 
+                $date = $row['date_created'];
                 $user = $row["user_id"];
                 $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
                 $result = $PDOX->allRowsDie($sql);
@@ -58,6 +60,7 @@ if (isset($_POST["question"])){
                         <td>$id</td>
                         <td>$username</td>
                         <td>$question</td>
+                        <td>$date</td>
                     </tr>";
             }
         } else {
