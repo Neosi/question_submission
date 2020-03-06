@@ -24,7 +24,6 @@ if (isset($_POST["question"])){
 ?>
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<p><?php $OUTPUT->welcomeUserCourse(); ?></p>
 <div class="body">
     <div class='input-outer'></div>
     
