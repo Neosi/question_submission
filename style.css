@@ -80,7 +80,7 @@
 
 .grid{
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
 }
 
 .grid-left{
@@ -93,7 +93,6 @@
 }
 .grid-right{
     padding: 5px;
-
     margin-top: 5px;
     margin-bottom: 5px;
     background: #FFFFFF;
@@ -102,7 +101,6 @@
 }
 .grid-center{
     padding: 5px;
-
     margin-top: 5px;
     margin-bottom: 5px;
     background: #FFFFFF;
