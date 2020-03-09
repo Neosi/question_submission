@@ -33,7 +33,7 @@ if (isset($_POST["question"])) {
         "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
     VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06')";
     $result = $PDOX->queryDie($sql);
-    
+
     //Fetch the created row and push to current array
     $user_id = $USER->id;
     $sql = "SELECT * FROM {$p}qs_question WHERE user_id = $user_id AND question_text='$question'";
@@ -49,12 +49,16 @@ if (isset($_POST["remove_id"])) {
     $id = $_POST["remove_id"];
     $sql = "DELETE FROM {$p}qs_question WHERE id = $id";
     $result = $PDOX->queryDie($sql);
-    
+
     $sql = "SELECT * FROM {$p}qs_question ";
     $rows = $PDOX->allRowsDie($sql);
 }
 ?>
-
+<script type="text/javascript">
+  setTimeout(function(){
+    location = ''
+  },20000)
+</script>
 <link rel="stylesheet" type="text/css" href="style.css">
 <div class="body">
     <div class='input-outer'></div>
