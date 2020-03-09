@@ -20,6 +20,7 @@ if (isset($_POST["question"])) {
         "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
     VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06')";
     $result = $PDOX->queryDie($sql);
+    header("Location:index.php");
 }
 ?>
 
@@ -32,7 +33,7 @@ if (isset($_POST["question"])) {
         <input class='input' type="text" name="question"> </input>
         <input type='checkbox' class='checkbox'></input>
         <p class='checkbox-text'>Anonymous</p>
-        <button type='submit' class='button'>Ask</button>
+        <button type='submit' class='button'>Ask!</button>
     </form>
     <div class='qlist'>
         <div class='grid'>
