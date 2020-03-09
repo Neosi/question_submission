@@ -49,8 +49,9 @@ if (isset($_POST["remove_id"])) {
     $id = $_POST["remove_id"];
     $sql = "DELETE FROM {$p}qs_question WHERE id = $id";
     $result = $PDOX->queryDie($sql);
-    header("Location: ".$_SERVER['PHP_SELF']);
-    die;
+    
+    $sql = "SELECT * FROM {$p}qs_question ";
+    $rows = $PDOX->allRowsDie($sql);
 }
 ?>
 
@@ -61,7 +62,7 @@ if (isset($_POST["remove_id"])) {
         <input class='input' type="text" name="question"> </input>
         <input type='checkbox' class='checkbox' name="anon"></input>
         <p class='checkbox-text'>Anonymous</p>
-        <button type='submit' class='button'>Ask</button>
+        <button type='submit' class='button'>Ask!</button>
     </form>
     <div class='qlist'>
         <div class='grid'>
