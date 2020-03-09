@@ -33,7 +33,12 @@ if (isset($_POST["question"])) {
         "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
     VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06')";
     $result = $PDOX->queryDie($sql);
-    // header("Location:index.php/");
+    
+    //Fetch the created row and push to current array
+    $user_id = $USER->id;
+    $sql = "SELECT * FROM {$p}qs_question WHERE user_id = $user_id AND question_text='$question'";
+    $row = $PDOX->rowDie($sql);
+    array_push($rows, $row);
 }
 
 //================================================================
@@ -44,7 +49,8 @@ if (isset($_POST["remove_id"])) {
     $id = $_POST["remove_id"];
     $sql = "DELETE FROM {$p}qs_question WHERE id = $id";
     $result = $PDOX->queryDie($sql);
-    // header("Location:index.php/");
+    header("Location: ".$_SERVER['PHP_SELF']);
+    die;
 }
 ?>
 
@@ -55,7 +61,7 @@ if (isset($_POST["remove_id"])) {
         <input class='input' type="text" name="question"> </input>
         <input type='checkbox' class='checkbox' name="anon"></input>
         <p class='checkbox-text'>Anonymous</p>
-        <button type='submit' class='button'>Ask!</button>
+        <button type='submit' class='button'>Ask</button>
     </form>
     <div class='qlist'>
         <div class='grid'>
