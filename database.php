@@ -64,3 +64,17 @@ array( "{$CFG->dbprefix}qs_user",
     PRIMARY KEY (id)
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8")
 );
+
+
+$DATABASE_UPGRADE = function($oldversion){
+    global $CFG, $PDOX;
+
+    if ( $oldversion < 201907070903){
+    $sql = "ALTER TABLE {$CFG->dbprefix}qs_question MODIFY anonymous TINYINT";
+    echo("Upgrading: ".$sql."<br/>\n");
+    error_log("Upgrading: ".$sql);
+    $q = $PDOX->queryDie($sql);
+    }
+    
+    return 201907070903;
+};
