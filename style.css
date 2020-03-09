@@ -38,9 +38,9 @@
 
 .input-outer{
     position: absolute;
-    right: 56px;
-    left: 56px;
-    top: 40px;
+    right: 0px;
+    left: 0px;
+    top: 0px;
     bottom: 96px;
 
     background: #686868;
@@ -109,10 +109,10 @@
 
 .qlist{
     position: absolute;
-    right: 56px;
-    left: 56px;
+    right: 0px;
+    left: 0px;
     top: 96px;
-    bottom: 56px;
+    bottom: 0px;
     padding: 30px;
     background: #F1B929;
     box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
