@@ -55,7 +55,7 @@ if (isset($_POST["remove_id"])) {
 }
 ?>
 <script type="text/javascript">
-  setTimeout(function(){
+  setInterval(function(){
     location = ''
   },20000)
 </script>
