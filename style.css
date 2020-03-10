@@ -50,9 +50,9 @@
 
 
 .button{
-    position: absolute;
-    right: 206px;
-    top: 44px;
+    position: absolute !important;
+    right: 116px;
+    top: 53px;
 }
 
 .grid{
