@@ -58,53 +58,59 @@ if (isset($_POST["remove_id"])) {
     //   location = ''
     // }, 20000)
 </script>
-<link rel="stylesheet" type="text/css" href="style.css"/>
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <div class='input-outer'></div>
-    <form action="index.php" method="post">
-        <input class='input' type="text" name="question"> </input>
-        <input type='checkbox' class='checkbox' name="anon"></input>
-        <p class='checkbox-text'>Anonymous</p>
-        <button class="btn waves-effect waves-light button" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-        </button>
-    </form>
-    <div class='qlist'>
-        <div class='grid'>
-            <?php
-            // Mapping the fetched questions to the view
-            global $rows;
-            if ($rows) {
-                foreach ($rows as $row) {
-                    $id = $row['id'];
-                    $question = $row['question_text'];
-                    $date = $row['date_created'];
-                    $user = $row["user_id"];
-                    $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
-                    $result = $PDOX->allRowsDie($sql);
-                    $username = $result[0]['displayname'];
-                    if ($user == $USER->id) {
-                        $actions = "<form action='index.php' method='post'>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<div class='input-outer'></div>
+<div class='background'></div>
+<form action="index.php" method="post">
+    <input class='input' type="text" name="question"> </input>
+    <p>
+        <label class="checkbox">
+            <input class="checkbox" type="checkbox" name="anon" />
+            <span>Anon</span>
+        </label>
+    </p>
+    <button class="btn waves-effect waves-light button red" type="submit" name="action">Ask
+        <i class="material-icons right">send</i>
+    </button>
+</form>
+<ul class="collection container list-layout">
+    <?php
+    // Mapping the fetched questions to the view
+    global $rows;
+    if ($rows) {
+        foreach ($rows as $row) {
+            $id = $row['id'];
+            $question = $row['question_text'];
+            $date = $row['date_created'];
+            $user = $row["user_id"];
+            $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
+            $result = $PDOX->allRowsDie($sql);
+            $username = $result[0]['displayname'];
+            if ($user == $USER->id) {
+                $actions = "<form action='index.php' method='post'>
                                         <input type='hidden' value=$id name='remove_id'>
-                                        <button type='submit' class='waves-effect waves-light btn'>Remove</a>
+                                        <button type='submit' class='secondary-content btn red'>X</button>
                                     </form>";
-                    } else {
-                        $actions = "";
-                    }
-
-                    echo "  
-                            <div class='grid-left'>$username</div>
-                            <div class='grid-center'>$question</div>
-                            <div class='grid-center'>$date</div>
-                            <div class='grid-right'>$actions</div>
-                        ";
-                }
             } else {
-                echo "<div class='grid-left'>No questions yet!</div>";
+                $actions = "";
             }
-            ?>
-        </div>
-    </div>
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+            echo "
+                    <li class='collection-item avatar'>
+                        <i class='material-icons circle red'>arrow_upward</i>
+                        <span class='title'>$username</span>
+                        <p>$date<br>
+                            $question
+                        </p>
+                        $actions
+                    </li>
+                    ";
+        }
+    } else {
+        echo "<div class='grid-left'>No questions yet!</div>";
+    }
+    ?>
+</ul>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 </div>
