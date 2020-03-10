@@ -8,7 +8,6 @@ use \Tsugi\Core\LTIX;
 use \Tsugi\UI\SettingsForm;
 use \Tsugi\UI\Output;
 
-
 //=========================================================
 //======Fetching required data for Tsugi to function=======
 //=========================================================
@@ -55,12 +54,12 @@ if (isset($_POST["remove_id"])) {
 }
 ?>
 <script type="text/javascript">
-  setInterval(function(){
-    location = ''
-  },20000)
+    setInterval(function() {
+        location = ''
+    }, 20000)
 </script>
-<link rel="stylesheet" type="text/css" href="style.css">
-<div class="body">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <div class='input-outer'></div>
     <form action="index.php" method="post">
         <input class='input' type="text" name="question"> </input>
@@ -104,4 +103,5 @@ if (isset($_POST["remove_id"])) {
             ?>
         </div>
     </div>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
 </div>
