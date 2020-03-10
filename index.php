@@ -60,6 +60,7 @@ if (isset($_POST["remove_id"])) {
 </script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <div class='input-outer'></div>
     <form action="index.php" method="post">
         <input class='input' type="text" name="question"> </input>
