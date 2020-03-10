@@ -1,5 +1,6 @@
 <?php
 require_once "../config.php";
+include_once "./api.php";
 
 use \Tsugi\Util\LTI;
 use \Tsugi\Util\PDOX;
@@ -8,79 +9,31 @@ use \Tsugi\Core\LTIX;
 use \Tsugi\UI\SettingsForm;
 use \Tsugi\UI\Output;
 
-//=========================================================
-//======Fetching required data for Tsugi to function=======
-//=========================================================
-
 $LAUNCH = LTIX::requireData();
 $p = $CFG->dbprefix;
 
-//=========================================================
-//======Fetching all questions=============================
-//=========================================================
-function refresh(){
-    global $rows, $p, $PDOX;
-    $sql = "SELECT q.id, q.question_text, q.date_created, q.status, q.anonymous, q.user_id as quser_id, v.user_id as vuser_id, v.question_id, v.id as vid 
-        FROM {$p}qs_question AS q 
-        LEFT OUTER JOIN {$p}qs_vote as v on q.id = v.question_id";
-    $rows = $PDOX->allRowsDie($sql);
-}
-
+//Initial fetch
 refresh();
 
-//=========================================================
-//=====If there is a question posted add it to the db======
-//=========================================================
-
+//API Calls
 if (isset($_POST["question"])) {
-    $question = $_POST["question"];
-    $anon = 0;
-    if (isset($_POST["anon"])) {
-        $anon = 1;
-        echo "WAS ANON";
-    }
-    $sql =
-        "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created, anonymous) 
-    VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06', '$anon')";
-    $result = $PDOX->queryDie($sql);
-
+    addQuestion();
     refresh();
-
 }
 
-//================================================================
-//=====If there is a removal request remove question from db======
-//================================================================
+if (isset($_POST["upvoter_id"])) {
+    upvote($_POST['upvoter_id'], $_POST['question_id']);
+    refresh();
+}
 
 if (isset($_POST["remove_id"])) {
-    $id = $_POST["remove_id"];
-    $sql = "DELETE FROM {$p}qs_question WHERE id = $id";
-    $result = $PDOX->queryDie($sql);
-
+    removeQuestion();
     refresh();
-
-}
-
-//================================================================
-//=====If there is an upvote request add upvote to question=======
-//================================================================
-if (isset($_POST["upvote"])) {
-    $question = $_POST["question_id"];
-    $user = $_POST["user_id"];
-    $sql = "INSERT INTO {$p}qs_vote (user_id, question_id) VALUES ('$user', '$question')";
-    $result = $PDOX->queryDie($sql);
-
-    refresh();
-
 }
 ?>
 
-
-
-
-
-
 <script type="text/javascript">
+    // Set page refresh on timer
     // setInterval(function() {
     //   location = ''
     // }, 20000)
@@ -107,7 +60,7 @@ if (isset($_POST["upvote"])) {
     <?php
     // Mapping the fetched questions to the view
 
-    global $rows;
+    global $rows, $countdict;
 
     if ($rows) {
         foreach ($rows as $row) {
@@ -131,13 +84,23 @@ if (isset($_POST["upvote"])) {
             } else {
                 $actions = "";
             }
+            
+
+            $sql = "SELECT COUNT(*) FROM {$p}qs_vote WHERE question_id = $id";
+            $result = $PDOX->rowDie($sql);
+            $count = $result['COUNT(*)'];
+            
             echo "
                     <li class='collection-item avatar'>
-                        <button class='circle red button-color'>
-                            <p>+
-                            <br>
-                            $anon</p>
-                        </button>
+                        <form action='index.php' method='post'>
+                            <input type='hidden' value=$USER->id name='upvoter_id'>
+                            <input type='hidden' value=$id name='question_id'>
+                            <button type='submit' class='circle red button-color'>
+                                <p>+
+                                <br>
+                                $count</p>
+                            </button>
+                        </form>
                         <span class='title'>$username</span>
                         <p>$question</p>
                         $actions
@@ -151,7 +114,16 @@ if (isset($_POST["upvote"])) {
     <?php
     //global $rows; 
     //echo json_encode($rows);
+    global $countdict;
+
+
+    foreach ($countdict as $key => $value) {
+        echo "Key: $key; Value: $value\n";
+    }
+
+
     ?>
+
     <ul class="pagination pagination-color">
         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
         <li class="active"><a href="#!">1</a></li>
