@@ -2,15 +2,6 @@
     text-align: center;
 }
 
-.checkbox-text{
-    position: absolute;
-    right: 110px;
-    top: 48px;
-    height: 30px;
-    color: white;
-    font-family: Calibri;
-}
-
 .q-table{
     text-align: center;
     font-family: Calibri;
@@ -18,69 +9,49 @@
     border-collapse: collapse;
 }
 
-
-
-
 .checkbox{
     position: absolute;
     width: 62px;
-    height: 30px;
-    right: 56px;
-    top: 56px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 38px;
+    right: 220px;
+    top: 65px;
 }
 
 .body{
     font-family: Calibri;
+    background: antiquewhite;
 }
-
 
 .input-outer{
     position: absolute;
     right: 0px;
     left: 0px;
     top: 0px;
-    bottom: 96px;
-
-    background: #686868;
+    height:100px;
+    background: #2E2F2F;
     box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-
 }
 
-.input{
-    position: absolute;
-    height: 30px;
-    right: 310px;
-    left: 120px;
-    top: 56px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 1px 1px 4px rgba(0, 0, 0, 0.25);
-    border-radius: .6rem;
-    width: fit-content;
-    width: -moz-available;
+
+.list-layout{
+  top: 140px;
 }
+
 .button{
-   position: absolute;
-    width: 62px;
-    height: 30px;
-    right: 206px;
-    top: 56px;
-    background: #FFFFFF;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 4px; 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: #FFFFFF;
-    color: rgb(20, 20, 20);
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    padding: 7px 14px;
+    position: absolute !important;
+    right: 100px;
+    top: 53px;
+}
+
+.button-color{
+  color: white;
 }
 
 .grid{
     display: grid;
     grid-template-columns: 1fr 4fr 1fr 1fr;
+    padding: 80px;
+    padding-top: 20px;
 }
 
 .grid-left{
@@ -106,17 +77,69 @@
     background: #FFFFFF;
 }
 
-
 .qlist{
     position: absolute;
     right: 0px;
     left: 0px;
-    top: 96px;
+    top: 100px;
     bottom: 0px;
-    padding: 30px;
-    background: #F1B929;
+    background: #F5AD28;
     box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-bottom-right-radius: 4px;
     border-bottom-left-radius: 4px;
 }
 
+/* label color */
+.input-field label {
+    color: rgb(230, 230, 230);
+  }
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+    color: rgb(230, 230, 230);
+  }
+
+  .input-field input[type=text]{
+    color: rgb(230, 230, 230);
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid rgb(230, 230, 230);
+    box-shadow: 0 1px 0 0 rgb(230, 230, 230);
+  }
+  /* valid color */
+  .input-field input[type=text].valid {
+    border-bottom: 1px solid rgb(230, 230, 230);
+    box-shadow: 0 1px 0 0 rgb(230, 230, 230);
+  }
+  /* invalid color */
+  .input-field input[type=text].invalid {
+    border-bottom: 1px solid rgb(230, 230, 230);
+    box-shadow: 0 1px 0 0 rgb(230, 230, 230);
+  }
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+    color: rgb(230, 230, 230);
+  }
+
+  .input{
+    position: absolute;
+    right: 300px;
+    left: 90px;
+    top: 44px;
+    color: whitesmoke;
+    width: fit-content !important;
+    width: -moz-available !important;
+}
+.background{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+  background: antiquewhite;
+  z-index: -1;
+}
+
+.pagination-color{
+  background: white;
+}
