@@ -18,9 +18,15 @@ $p = $CFG->dbprefix;
 //=========================================================
 //======Fetching all questions=============================
 //=========================================================
+function refresh(){
+    global $rows, $p, $PDOX;
+    $sql = "SELECT q.id, q.question_text, q.date_created, q.status, q.anonymous, q.user_id as quser_id, v.user_id as vuser_id, v.question_id, v.id as vid 
+        FROM {$p}qs_question AS q 
+        LEFT OUTER JOIN {$p}qs_vote as v on q.id = v.question_id";
+    $rows = $PDOX->allRowsDie($sql);
+}
 
-$sql = "SELECT * FROM {$p}qs_question ";
-$rows = $PDOX->allRowsDie($sql);
+refresh();
 
 //=========================================================
 //=====If there is a question posted add it to the db======
@@ -29,7 +35,7 @@ $rows = $PDOX->allRowsDie($sql);
 if (isset($_POST["question"])) {
     $question = $_POST["question"];
     $anon = 0;
-    if (isset($_POST["anon"])){
+    if (isset($_POST["anon"])) {
         $anon = 1;
         echo "WAS ANON";
     }
@@ -38,11 +44,8 @@ if (isset($_POST["question"])) {
     VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06', '$anon')";
     $result = $PDOX->queryDie($sql);
 
-    //Fetch the created row and push to current array
-    $user_id = $USER->id;
-    $sql = "SELECT * FROM {$p}qs_question WHERE user_id = $user_id AND question_text='$question'";
-    $row = $PDOX->rowDie($sql);
-    array_push($rows, $row);
+    refresh();
+
 }
 
 //================================================================
@@ -54,10 +57,29 @@ if (isset($_POST["remove_id"])) {
     $sql = "DELETE FROM {$p}qs_question WHERE id = $id";
     $result = $PDOX->queryDie($sql);
 
-    $sql = "SELECT * FROM {$p}qs_question ";
-    $rows = $PDOX->allRowsDie($sql);
+    refresh();
+
+}
+
+//================================================================
+//=====If there is an upvote request add upvote to question=======
+//================================================================
+if (isset($_POST["upvote"])) {
+    $question = $_POST["question_id"];
+    $user = $_POST["user_id"];
+    $sql = "INSERT INTO {$p}qs_vote (user_id, question_id) VALUES ('$user', '$question')";
+    $result = $PDOX->queryDie($sql);
+
+    refresh();
+
 }
 ?>
+
+
+
+
+
+
 <script type="text/javascript">
     // setInterval(function() {
     //   location = ''
@@ -84,21 +106,23 @@ if (isset($_POST["remove_id"])) {
 
     <?php
     // Mapping the fetched questions to the view
+
     global $rows;
+
     if ($rows) {
         foreach ($rows as $row) {
             $id = $row['id'];
             $question = $row['question_text'];
             $date = $row['date_created'];
             $anon = $row['anonymous'];
-            $user = $row["user_id"];
+            $user = $row["quser_id"];
             $username = "Anonymous";
-            if ($anon != 1){
+            if ($anon != 1) {
                 $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
                 $result = $PDOX->allRowsDie($sql);
                 $username = $result[0]['displayname'];
             }
-            
+
             if ($user == $USER->id) {
                 $actions = "<form action='index.php' method='post'>
                                         <input type='hidden' value=$id name='remove_id'>
@@ -114,7 +138,6 @@ if (isset($_POST["remove_id"])) {
                             <br>
                             $anon</p>
                         </button>
-
                         <span class='title'>$username</span>
                         <p>$question</p>
                         $actions
@@ -124,6 +147,10 @@ if (isset($_POST["remove_id"])) {
     } else {
         echo "<div class='grid-left'>No questions yet!</div>";
     }
+    ?>
+    <?php
+    //global $rows; 
+    //echo json_encode($rows);
     ?>
     <ul class="pagination pagination-color">
         <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
