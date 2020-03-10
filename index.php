@@ -54,9 +54,9 @@ if (isset($_POST["remove_id"])) {
 }
 ?>
 <script type="text/javascript">
-    setInterval(function() {
-        location = ''
-    }, 20000)
+    // setInterval(function() {
+    //   location = ''
+    // }, 20000)
 </script>
 <link rel="stylesheet" type="text/css" href="style.css"/>
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
