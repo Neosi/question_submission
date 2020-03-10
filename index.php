@@ -66,7 +66,9 @@ if (isset($_POST["remove_id"])) {
         <input class='input' type="text" name="question"> </input>
         <input type='checkbox' class='checkbox' name="anon"></input>
         <p class='checkbox-text'>Anonymous</p>
-        <a type='submit' class='waves-effect waves-light btn'>button</a>
+        <button class="btn waves-effect waves-light button" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
     </form>
     <div class='qlist'>
         <div class='grid'>
