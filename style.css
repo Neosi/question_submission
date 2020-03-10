@@ -126,6 +126,10 @@
   .input-field input[type=text]:focus + label {
     color: rgb(230, 230, 230);
   }
+
+  .input-field input[type=text]{
+    color: rgb(230, 230, 230);
+  }
   /* label underline focus color */
   .input-field input[type=text]:focus {
     border-bottom: 1px solid rgb(230, 230, 230);
