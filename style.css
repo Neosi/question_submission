@@ -51,7 +51,7 @@
 
 .button{
     position: absolute !important;
-    right: 116px;
+    right: 176px;
     top: 53px;
 }
 
@@ -130,9 +130,10 @@
 
   .input{
     position: absolute;
-    right: 260px;
-    left: 120px;
+    right: 300px;
+    left: 90px;
     top: 44px;
+    color: whitesmoke;
     width: fit-content !important;
     width: -moz-available !important;
 }

@@ -87,7 +87,7 @@ if (isset($_POST["remove_id"])) {
                     if ($user == $USER->id) {
                         $actions = "<form action='index.php' method='post'>
                                         <input type='hidden' value=$id name='remove_id'>
-                                        <a type='submit' class='waves-effect waves-light btn'>Remove</a>
+                                        <button type='submit' class='waves-effect waves-light btn'>Remove</a>
                                     </form>";
                     } else {
                         $actions = "";
