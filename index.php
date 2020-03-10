@@ -65,7 +65,7 @@ if (isset($_POST["remove_id"])) {
         <input class='input' type="text" name="question"> </input>
         <input type='checkbox' class='checkbox' name="anon"></input>
         <p class='checkbox-text'>Anonymous</p>
-        <button type='submit' class='button'>Ask!</button>
+        <a type='submit' class='waves-effect waves-light btn'>button</a>
     </form>
     <div class='qlist'>
         <div class='grid'>
@@ -84,7 +84,7 @@ if (isset($_POST["remove_id"])) {
                     if ($user == $USER->id) {
                         $actions = "<form action='index.php' method='post'>
                                         <input type='hidden' value=$id name='remove_id'>
-                                        <button type='submit'>Remove</button>
+                                        <a type='submit' class='waves-effect waves-light btn'>Remove</a>
                                     </form>";
                     } else {
                         $actions = "";
