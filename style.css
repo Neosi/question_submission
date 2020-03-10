@@ -41,7 +41,7 @@
     right: 0px;
     left: 0px;
     top: 0px;
-    bottom: 96px;
+    height:100px;
 
     background: #2E2F2F;
     box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
@@ -79,6 +79,7 @@
 .grid{
     display: grid;
     grid-template-columns: 1fr 4fr 1fr 1fr;
+    padding: 80px;
 }
 
 .grid-left{
@@ -109,9 +110,8 @@
     position: absolute;
     right: 0px;
     left: 0px;
-    top: 96px;
+    top: 100px;
     bottom: 0px;
-    padding: 30px;
     background: #F5AD28;
     box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-bottom-right-radius: 4px;
