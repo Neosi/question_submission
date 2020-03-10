@@ -43,6 +43,10 @@
     top: 53px;
 }
 
+.button-color{
+  color: white;
+}
+
 .grid{
     display: grid;
     grid-template-columns: 1fr 4fr 1fr 1fr;
@@ -134,4 +138,8 @@
   right: 0;
   background: antiquewhite;
   z-index: -1;
+}
+
+.pagination-color{
+  background: white;
 }

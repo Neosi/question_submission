@@ -28,9 +28,14 @@ $rows = $PDOX->allRowsDie($sql);
 
 if (isset($_POST["question"])) {
     $question = $_POST["question"];
+    $anon = 0;
+    if (isset($_POST["anon"])){
+        $anon = 1;
+        echo "WAS ANON";
+    }
     $sql =
-        "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created) 
-    VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06')";
+        "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created, anonymous) 
+    VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06', '$anon')";
     $result = $PDOX->queryDie($sql);
 
     //Fetch the created row and push to current array
@@ -76,6 +81,7 @@ if (isset($_POST["remove_id"])) {
     </button>
 </form>
 <ul class="collection container list-layout">
+
     <?php
     // Mapping the fetched questions to the view
     global $rows;
@@ -84,25 +90,33 @@ if (isset($_POST["remove_id"])) {
             $id = $row['id'];
             $question = $row['question_text'];
             $date = $row['date_created'];
+            $anon = $row['anonymous'];
             $user = $row["user_id"];
-            $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
-            $result = $PDOX->allRowsDie($sql);
-            $username = $result[0]['displayname'];
+            $username = "Anonymous";
+            if ($anon != 1){
+                $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
+                $result = $PDOX->allRowsDie($sql);
+                $username = $result[0]['displayname'];
+            }
+            
             if ($user == $USER->id) {
                 $actions = "<form action='index.php' method='post'>
                                         <input type='hidden' value=$id name='remove_id'>
-                                        <button type='submit' class='secondary-content btn red'>X</button>
+                                        <button type='submit' class='secondary-content btn red'><i class='material-icons right'>clear</i></button>
                                     </form>";
             } else {
                 $actions = "";
             }
             echo "
                     <li class='collection-item avatar'>
-                        <i class='material-icons circle red'>arrow_upward</i>
+                        <button class='circle red button-color'>
+                            <p>+
+                            <br>
+                            $anon</p>
+                        </button>
+
                         <span class='title'>$username</span>
-                        <p>$date<br>
-                            $question
-                        </p>
+                        <p>$question</p>
                         $actions
                     </li>
                     ";
@@ -111,6 +125,15 @@ if (isset($_POST["remove_id"])) {
         echo "<div class='grid-left'>No questions yet!</div>";
     }
     ?>
+    <ul class="pagination pagination-color">
+        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+        <li class="active"><a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+    </ul>
 </ul>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 </div>
