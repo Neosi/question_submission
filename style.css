@@ -125,3 +125,10 @@
 .pagination-color{
   background: white;
 }
+
+.encap{
+  background:cadetblue;
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

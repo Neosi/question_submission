@@ -41,6 +41,7 @@ if (isset($_POST["remove_id"])) {
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<div class='encap'>
 <div class='container evspace'>
     <div class="col s12 m7">
         <div class="card horizontal">
@@ -134,5 +135,6 @@ if (isset($_POST["remove_id"])) {
         <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
     </ul>
 </ul>
-<script type="text/javascript" src="js/materialize.min.js"></script>
 </div>
+</div>
+<script type="text/javascript" src="js/materialize.min.js"></script>
