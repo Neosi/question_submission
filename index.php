@@ -32,17 +32,7 @@ if (isset($_POST["remove_id"])) {
 }
 ?>
 
-<script type="text/javascript">
-    // Set page refresh on timer
-    // setInterval(function() {
-    //   location = ''
-    // }, 20000)
-    function toggle() {
-        var a = document.getElementById("style1");
-        a.x = 'resumecssinvert' == a.x ? 'resumecss' : 'resumecssinvert'; // short if
-        a.href = a.x + '.css';
-    }
-</script>
+
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link id='style-set' rel="stylesheet" type="text/css" href="light.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
@@ -133,3 +123,14 @@ if (isset($_POST["remove_id"])) {
 </div>
 </div>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+    // Set page refresh on timer
+    // setInterval(function() {
+    //   location = ''
+    // }, 20000)
+    function toggle() {
+        var a = document.getElementById("style-set");
+        a.x = 'dark' == a.x ? 'light' : 'dark';
+        a.href = a.x + '.css';
+    }
+</script>
