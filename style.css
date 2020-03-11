@@ -9,37 +9,28 @@
     border-collapse: collapse;
 }
 
-.checkbox{
-    position: absolute;
-    width: 62px;
-    height: 38px;
-    right: 220px;
-    top: 65px;
+.raised{
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2);
 }
 
-.body{
+.evspace{
+  top: 4px;
+  position: relative;
+}
+
+.fill-available{
+  width: fit-content;
+  width: -moz-available;
+
+}
+
+.html{
     font-family: Calibri;
-}
-
-.input-outer{
-    position: absolute;
-    right: 0px;
-    left: 0px;
-    top: 0px;
-    height:100px;
-    background: #2E2F2F;
-    box-shadow: inset 2px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-
-.list-layout{
-  top: 140px;
+    background: dimgray !important;
 }
 
 .button{
-    position: absolute !important;
-    right: 100px;
-    top: 53px;
+    right: -20px;
 }
 
 .button-color{
@@ -121,13 +112,7 @@
   }
 
   .input{
-    position: absolute;
-    right: 300px;
-    left: 90px;
-    top: 44px;
-    color: whitesmoke;
-    width: fit-content !important;
-    width: -moz-available !important;
+    width: 135% !important;
 }
 .background{
   position: absolute;
@@ -135,7 +120,6 @@
   height: 100%;
   left: 0;
   right: 0;
-  z-index: -1;
 }
 
 .pagination-color{

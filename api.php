@@ -15,7 +15,6 @@ function addQuestion(){
     $anon = 0;
     if (isset($_POST["anon"])) {
         $anon = 1;
-        echo "WAS ANON";
     }
     $sql =
         "INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created, anonymous) 

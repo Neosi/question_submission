@@ -41,21 +41,25 @@ if (isset($_POST["remove_id"])) {
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-<div class='input-outer'></div>
-<div class='background'></div>
-<form action="index.php" method="post">
-    <input class='input' type="text" name="question"> </input>
-    <p>
-        <label class="checkbox">
-            <input class="checkbox" type="checkbox" name="anon" />
-            <span>Anon</span>
-        </label>
-    </p>
-    <button class="btn waves-effect waves-light button red" type="submit" name="action">Ask
-        <i class="material-icons right">send</i>
-    </button>
-</form>
-<ul class="collection container list-layout">
+<div class='container evspace'>
+    <div class="col s12 m7">
+        <div class="card horizontal">
+            <div class="card-content fill-available">
+                <form action="index.php" method="post">
+                    <input type="text" name="question"> </input>
+                    <label >
+                        <input type="checkbox" name="anon" />
+                        <span>Anon</span>
+                    </label>
+                    <button class="btn waves-effect waves-light button red" type="submit" name="action">Ask
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="collection raised container">
 
     <?php
     // Mapping the fetched questions to the view
@@ -84,14 +88,14 @@ if (isset($_POST["remove_id"])) {
             } else {
                 $actions = "";
             }
-            
+
 
             $sql = "SELECT COUNT(*) FROM {$p}qs_vote WHERE question_id = $id";
             $result = $PDOX->rowDie($sql);
             $count = $result['COUNT(*)'];
 
             $upvotes = $row['upvotes'];
-            
+
             echo "
                     <li class='collection-item avatar'>
                         <form action='index.php' method='post'>
