@@ -19,7 +19,6 @@
 
 .body{
     font-family: Calibri;
-    background: antiquewhite;
 }
 
 .input-outer{
@@ -136,7 +135,6 @@
   height: 100%;
   left: 0;
   right: 0;
-  background: antiquewhite;
   z-index: -1;
 }
 

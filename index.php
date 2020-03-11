@@ -89,6 +89,8 @@ if (isset($_POST["remove_id"])) {
             $sql = "SELECT COUNT(*) FROM {$p}qs_vote WHERE question_id = $id";
             $result = $PDOX->rowDie($sql);
             $count = $result['COUNT(*)'];
+
+            $upvotes = $row['upvotes'];
             
             echo "
                     <li class='collection-item avatar'>
@@ -98,7 +100,7 @@ if (isset($_POST["remove_id"])) {
                             <button type='submit' class='circle red button-color'>
                                 <p>+
                                 <br>
-                                $count</p>
+                                $upvotes</p>
                             </button>
                         </form>
                         <span class='title'>$username</span>
@@ -114,12 +116,6 @@ if (isset($_POST["remove_id"])) {
     <?php
     //global $rows; 
     //echo json_encode($rows);
-    global $countdict;
-
-
-    foreach ($countdict as $key => $value) {
-        echo "Key: $key; Value: $value\n";
-    }
 
 
     ?>
