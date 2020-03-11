@@ -37,8 +37,14 @@ if (isset($_POST["remove_id"])) {
     // setInterval(function() {
     //   location = ''
     // }, 20000)
+    function toggle() {
+        var a = document.getElementById("style1");
+        a.x = 'resumecssinvert' == a.x ? 'resumecss' : 'resumecssinvert'; // short if
+        a.href = a.x + '.css';
+    }
 </script>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<link id='style-set' rel="stylesheet" type="text/css" href="light.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 <div class='background'></div>
@@ -116,25 +122,13 @@ if (isset($_POST["remove_id"])) {
                     ";
         }
     } else {
-        echo "<div class='grid-left'>No questions yet!</div>";
+        echo "<li class='collection-item'>No questions yet!</li>";
     }
     ?>
     <?php
     //global $rows; 
     //echo json_encode($rows);
-
-
     ?>
-
-    <ul class="pagination pagination-color">
-        <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-        <li class="active"><a href="#!">1</a></li>
-        <li class="waves-effect"><a href="#!">2</a></li>
-        <li class="waves-effect"><a href="#!">3</a></li>
-        <li class="waves-effect"><a href="#!">4</a></li>
-        <li class="waves-effect"><a href="#!">5</a></li>
-        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-    </ul>
 </ul>
 </div>
 </div>
