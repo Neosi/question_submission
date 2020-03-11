@@ -132,3 +132,12 @@
   padding-top: 20px;
   padding-bottom: 20px;
 }
+
+.background{
+  position: absolute;
+  top: 0px;
+  bottom:0px;
+  left:0px;
+  right:0px;
+  background: cadetblue;
+}

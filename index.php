@@ -41,6 +41,7 @@ if (isset($_POST["remove_id"])) {
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<div class='background'></div>
 <div class='encap'>
 <div class='container evspace'>
     <div class="col s12 m7">
