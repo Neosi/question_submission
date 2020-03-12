@@ -69,27 +69,20 @@ array( "{$CFG->dbprefix}qs_user",
 $DATABASE_UPGRADE = function($oldversion){
     global $CFG, $PDOX;
 
-    if ( $oldversion < 201907070903){
-        $sql = "ALTER TABLE {$CFG->dbprefix}qs_question MODIFY anonymous TINYINT";
+    if ( $oldversion < 201907070906){
+        $sql = "drop table if exists {$CFG->dbprefix}qs_module";
         echo("Upgrading: ".$sql."<br/>\n");
         error_log("Upgrading: ".$sql);
         $q = $PDOX->queryDie($sql);
     }
 
-    if ( $oldversion < 201907070904){
-        $sql = "ALTER TABLE {$CFG->dbprefix}qs_question ADD upvotes INT";
-        echo("Upgrading: ".$sql."<br/>\n");
-        error_log("Upgrading: ".$sql);
-        $q = $PDOX->queryDie($sql);
-    }
-
-    if ( $oldversion < 201907070905){
-        $sql = "ALTER TABLE {$CFG->dbprefix}qs_question ALTER upvotes SET DEFAULT 0";
+    if ( $oldversion < 201907070907){ 
+        $sql = "ALTER TABLE {$CFG->dbprefix}qs_question ADD link_id INT";
         echo("Upgrading: ".$sql."<br/>\n");
         error_log("Upgrading: ".$sql);
         $q = $PDOX->queryDie($sql);
     }
         
     
-    return 201907070905;
+    return 201907070907;
 };
