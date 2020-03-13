@@ -69,6 +69,13 @@ array( "{$CFG->dbprefix}qs_user",
 $DATABASE_UPGRADE = function($oldversion){
     global $CFG, $PDOX;
 
+    if ( $oldversion < 201907070905){
+        $sql = "ALTER TABLE {$CFG->dbprefix}qs_question ADD upvotes INT default 0";
+        echo("Upgrading: ".$sql."<br/>\n");
+        error_log("Upgrading: ".$sql);
+        $q = $PDOX->queryDie($sql);
+    }
+
     if ( $oldversion < 201907070906){
         $sql = "drop table if exists {$CFG->dbprefix}qs_module";
         echo("Upgrading: ".$sql."<br/>\n");
@@ -82,7 +89,6 @@ $DATABASE_UPGRADE = function($oldversion){
         error_log("Upgrading: ".$sql);
         $q = $PDOX->queryDie($sql);
     }
-        
     
     return 201907070907;
 };
