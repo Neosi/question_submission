@@ -1,8 +1,4 @@
 <?php
-//require_once "../config.php";
-include_once "./api.php";
-//include_once "./index.php";
-
 
 global $LAUNCH;
 $rows = API::refresh($LAUNCH->link->id); 
@@ -15,7 +11,7 @@ if ($rows) {
         $anon = $row['anonymous'];
         $user = $row["quser_id"];
         $username = "Anonymous";
-        if ($anon != 1) {
+        if ($anon != 1 || $LAUNCH->user->instructor == true) {
             $sql = "SELECT * FROM {$p}lti_user WHERE user_id = $user";
             $result = $PDOX->allRowsDie($sql);
             $username = $result[0]['displayname'];
@@ -57,5 +53,4 @@ if ($rows) {
 } else {
     echo "<li class='collection-item'>No questions yet!</li>";
 }
-echo "<li>".var_dump($LAUNCH->user->instructor)."</li>";
 
