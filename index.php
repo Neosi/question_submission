@@ -25,8 +25,6 @@ else if (isset($_POST["remove_id"])) {
     API::removeQuestion($_POST["remove_id"]);
 }
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link id='style-set' rel="stylesheet" type="text/css" href="light.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
@@ -53,7 +51,6 @@ else if (isset($_POST["remove_id"])) {
     </div>
     <ul class="collection raised container">
         <?php include "list.php";?>
-        <div id='question-list'></div>
     </ul>
 </div>
 </div>
