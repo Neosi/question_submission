@@ -58,26 +58,3 @@ else if (isset($_POST["remove_id"])) {
 </div>
 </div>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript">
-    // Set page refresh on timer
-
-    var link_id = <?php echo $LAUNCH->link->id;?>
-
-    $(document).ready(function(){   
-        console.log("Document loaded") ;
-        loadquestions();
-    });
-    function loadquestions(){
-        $("#question-list").load("list.php?id="+link_id);
-        console.log("Reloading List");
-        setTimeout(loadstation, 2000);
-    }
-
-    function toggle() {
-        var a = document.getElementById("style-set");
-        a.x = 'dark' == a.x ? 'light' : 'dark';
-        a.href = a.x + '.css';
-    }
-
-    
-</script>
