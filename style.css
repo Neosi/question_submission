@@ -24,6 +24,9 @@
   color: white;
 }
 
+.question{
+  padding-right: 60px;
+}
 
 .background{
   position: absolute;
