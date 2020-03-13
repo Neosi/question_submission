@@ -2,13 +2,7 @@
 require_once "../config.php";
 include_once "./api.php";
 
-use \Tsugi\Util\LTI;
-use \Tsugi\Util\PDOX;
-use \Tsugi\Core\Settings;
 use \Tsugi\Core\LTIX;
-use \Tsugi\Core\Link;
-use \Tsugi\UI\SettingsForm;
-use \Tsugi\UI\Output;
 
 $LAUNCH = LTIX::requireData();
 $p = $CFG->dbprefix;
@@ -17,11 +11,9 @@ $link_id = $LAUNCH->link->id;
 //API Calls
 if (isset($_POST["question"])) {
     API::addQuestion($_POST["question"]);
-}
-else if (isset($_POST["upvoter_id"])) {
+} else if (isset($_POST["upvoter_id"])) {
     API::upvote($_POST['upvoter_id'], $_POST['question_id']);
-}
-else if (isset($_POST["remove_id"])) {
+} else if (isset($_POST["remove_id"])) {
     API::removeQuestion($_POST["remove_id"]);
 }
 ?>
@@ -52,7 +44,7 @@ else if (isset($_POST["remove_id"])) {
         </div>
     </div>
     <ul class="collection raised container">
-        <?php include "list.php";?>
+        <?php include "list.php"; ?>
         <div id='question-list'></div>
     </ul>
 </div>
