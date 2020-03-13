@@ -2,10 +2,9 @@
 
 class API
 {
-    public static function refresh()
+    public static function refresh($link_id)
     {
-        global $PDOX, $p, $LAUNCH;
-        $link_id = $LAUNCH->link->id;
+        global $PDOX, $p;
         $sql = "    SELECT q.id, q.upvotes, q.question_text, q.date_created, q.status, q.anonymous, q.user_id as quser_id
                     FROM {$p}qs_question AS q
                     WHERE q.link_id = $link_id

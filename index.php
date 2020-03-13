@@ -60,12 +60,16 @@ else if (isset($_POST["remove_id"])) {
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript">
     // Set page refresh on timer
-    /*
-    $(document).ready(function(){    
-    loadstation();
+
+    var link_id = <?php echo $LAUNCH->link->id;?>
+
+    $(document).ready(function(){   
+        console.log("Document loaded") ;
+        loadquestions();
     });
-    function loadstation(){
-        $("#question-list").load("list.php");
+    function loadquestions(){
+        $("#question-list").load("list.php?id="+link_id);
+        console.log("Reloading List");
         setTimeout(loadstation, 2000);
     }
 
@@ -74,6 +78,6 @@ else if (isset($_POST["remove_id"])) {
         a.x = 'dark' == a.x ? 'light' : 'dark';
         a.href = a.x + '.css';
     }
-    */
+
     
 </script>

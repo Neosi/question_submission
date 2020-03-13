@@ -1,14 +1,11 @@
 <?php
-require_once "../config.php";
+//require_once "../config.php";
 include_once "./api.php";
-include_once "./index.php";
+//include_once "./index.php";
 
-use \Tsugi\Core\LTIX;
-$LAUNCH = LTIX::requireData();
-$p = $CFG->dbprefix;
-$link_id = $LAUNCH->link->id;
 
-$rows = API::refresh();
+global $LAUNCH;
+$rows = API::refresh($LAUNCH->link->id); 
 
 if ($rows) {
     foreach ($rows as $row) {
@@ -24,7 +21,7 @@ if ($rows) {
             $username = $result[0]['displayname'];
         }          
 
-        if ($user == $USER->id) {
+        if ($user == $USER->id || $LAUNCH->user->instructor == true) {
             $actions = "<form action='index.php' method='post'>
                                         <input type='hidden' value=$id name='remove_id'>
                                         <button type='submit' class='secondary-content btn red'><i class='material-icons'>clear</i></button>
@@ -33,7 +30,7 @@ if ($rows) {
             $actions = "";
         }
 
-
+         
         $sql = "SELECT COUNT(*) FROM {$p}qs_vote WHERE question_id = $id";
         $result = $PDOX->rowDie($sql);
         $count = $result['COUNT(*)'];
@@ -60,3 +57,5 @@ if ($rows) {
 } else {
     echo "<li class='collection-item'>No questions yet!</li>";
 }
+echo "<li>".var_dump($LAUNCH->user->instructor)."</li>";
+
