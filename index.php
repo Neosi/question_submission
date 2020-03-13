@@ -37,10 +37,18 @@ if (isset($_POST["question"])) {
                             <i class="material-icons right">send</i>
                         </button>
                     </form>
+                   
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+    <form action="index.php">
+
+    
+        <button class="btn waves-effect waves-light button refresh red" type="submit" name="action">
+            <i class="material-icons">cached</i>
+        </button>
+    </form>
     <ul class="collection raised container">
         <?php include "list.php";?>
     </ul>

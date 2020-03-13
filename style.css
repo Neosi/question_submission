@@ -16,6 +16,12 @@
   width: -moz-available;
 }
 
+.refresh{
+  position: inherit;
+  margin: 10px;
+  left: 46%;
+}
+
 .button{
     right: -20px;
 }
