@@ -19,6 +19,7 @@ class API
         if (isset($_POST["anon"])) {
             $anon = 1;
         }
+        $question = urlencode($question);
         $sql =
             "   INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created, anonymous, link_id) 
                 VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06', '$anon', $link_id)";

@@ -6,7 +6,7 @@ $rows = API::refresh($LAUNCH->link->id);
 if ($rows) {
     foreach ($rows as $row) {
         $id = $row['id'];
-        $question = $row['question_text'];
+        $question = urldecode($row['question_text']);
         $date = $row['date_created'];
         $anon = $row['anonymous'];
         $user = $row["quser_id"];
