@@ -16,14 +16,16 @@ if (isset($_POST["question"])) {
 } else if (isset($_POST["remove_id"])) {
     API::removeQuestion($_POST["remove_id"]);
 }
+$OUTPUT->header();
 ?>
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 <link id='style-set' rel="stylesheet" type="text/css" href="light.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<?php $OUTPUT->bodyStart();?>
 <div class='background'></div>
-<div class='encap'>
-    <div class='container evspace'>
+<div class='container encap'>
+    <div class='evspace'>
         <div class="col s12 m7">
             <div class="card horizontal">
                 <div class="card-content fill-available">
@@ -37,21 +39,19 @@ if (isset($_POST["question"])) {
                             <i class="material-icons right">send</i>
                         </button>
                     </form>
-                   
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <form action="index.php">
-
-    
         <button class="btn waves-effect waves-light button refresh red" type="submit" name="action">
             <i class="material-icons">cached</i>
         </button>
     </form>
-    <ul class="collection raised container">
-        <?php include "list.php";?>
+    <ul class="collection raised">
+        <?php include "list.php"; ?>
     </ul>
 </div>
 </div>
+<?php $OUTPUT->footerStart();?>
 <script type="text/javascript" src="js/materialize.min.js"></script>
