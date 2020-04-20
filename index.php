@@ -45,9 +45,10 @@ $OUTPUT->bodyStart();
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<?php $OUTPUT->bodyStart();?>
 <div class='background'></div>
-<div class='encap'>
-    <div class='container evspace'>
+<div class='container encap'>
+    <div class='evspace'>
         <div class="col s12 m7">
             <div class="card horizontal">
                 <div class="card-content fill-available">
@@ -61,7 +62,6 @@ $OUTPUT->bodyStart();
                             <i class="material-icons right">send</i>
                         </button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -144,7 +144,7 @@ $( "#messageForm" ).submit(function( event ) {
     question = $form.find( "input[name='question']" ).val(),
     question = $form.find( "input[name='question']" ).val(),
     question = $form.find( "input[name='question']" ).val(),
-    question = $form.find( "input[name='question']" ).val(),`
+    question = $form.find( "input[name='question']" ).val(),
     session = $form.find( "input[name='PHPSESSID']" ).val(),
     url = $form.attr( "action" );
 
