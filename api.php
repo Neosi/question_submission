@@ -4,17 +4,17 @@ class API
 {
     public static function refresh($link_id)
     {
-        global $PDOX, $p;
+        global $PDOX, $CFG;
         $sql = "    SELECT q.id, q.upvotes, q.question_text, q.date_created, q.status, q.anonymous, q.user_id as quser_id
-                    FROM {$p}qs_question AS q
+                    FROM {$CFG->dbprefix}qs_question AS q
                     WHERE q.link_id = $link_id
                     ORDER BY q.upvotes DESC";
         return $PDOX->allRowsDie($sql);
     }
 
-    public static function addQuestion($question)
+    public static function addQuestion($question, $p, $link, $user)
     {
-        global $p, $PDOX, $USER, $link_id;
+        global $PDOX;
         $anon = 0;
         if (isset($_POST["anon"])) {
             $anon = 1;
@@ -22,7 +22,7 @@ class API
         $question = urlencode($question);
         $sql =
             "   INSERT INTO {$p}qs_question (id, module_id, user_id, question_text, date_created, anonymous, link_id) 
-                VALUES (NULL, '0', '$USER->id', '$question', '2020-03-06', '$anon', $link_id)";
+                VALUES (NULL, '0', '$user', '$question', '2020-03-06', '$anon', '$link')";
         $PDOX->queryDie($sql);
     }
 

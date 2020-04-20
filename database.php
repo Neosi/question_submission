@@ -9,24 +9,15 @@ $DATABASE_UNINSTALL = array(
 
 $DATABASE_INSTALL = array(
 
-array( "{$CFG->dbprefix}qs_module",
-"create table {$CFG->dbprefix}qs_module (
-    id INTEGER NOT NULL AUTO_INCREMENT,
-    course_id INTEGER NOT NULL,
-    CONSTRAINT `{$CFG->dbprefix}qs_module_fk_1`
-        FOREIGN KEY (`course_id`)
-        REFERENCES `{$CFG->dbprefix}lti_link` (`link_id`)
-        ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (id)
-    ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
-
 array( "{$CFG->dbprefix}qs_question",
-"create table {$CFG->dbprefix}qs_question (
+"CREATE TABLE {$CFG->dbprefix}qs_question (
     id INTEGER NOT NULL AUTO_INCREMENT,
     module_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
     question_text TEXT NOT NULL,
     date_created DATE NOT NULL,
+    upvotes INT DEFAULT 0,
+    link_id INT,
     status INTEGER,
     anonymous BIT,
     CONSTRAINT `{$CFG->dbprefix}qs_question_fk_1`
@@ -37,7 +28,7 @@ array( "{$CFG->dbprefix}qs_question",
     ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
 
 array( "{$CFG->dbprefix}qs_vote",
-"create table {$CFG->dbprefix}qs_vote (
+"CREATE TABLE {$CFG->dbprefix}qs_vote (
     id INTEGER NOT NULL AUTO_INCREMENT,
     user_id INTEGER,
     question_id INTEGER,
@@ -53,7 +44,7 @@ array( "{$CFG->dbprefix}qs_vote",
 ) ENGINE = InnoDB DEFAULT CHARSET=utf8"),
 
 array( "{$CFG->dbprefix}qs_user",
-"create table {$CFG->dbprefix}qs_user (
+"CREATE TABLE {$CFG->dbprefix}qs_user (
     id INTEGER NOT NULL AUTO_INCREMENT,
     user_id INTEGER NOT NULL,
     approved BIT DEFAULT 1,
